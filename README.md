@@ -18,8 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: JiangWeixian/cheatsheets-sdil-actions@v1
-      with:
-          SLACK_CHANNEL: '#general'
       env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -32,10 +30,11 @@ jobs:
 
 |name|description|required|type|
 |:---:|:---:|:---:|:---|
-|GITHUB_TOKEN|your cheatsheet website url|true|string|
-|SLACK_CHANNEL|slack channel|true|string|
-|SLACK_WEBHOOK|slack webhook url|true|string|
-|debug|log flag|false|boolean|
+|GITHUB_TOKEN|(env)repo token|true|string|
+|SLACK_WEBHOOK|(env)slack webhook url|true|string|
+|CHEATSHEET_HOST|(input)cheatsheet website homepage, in default come from repo homepage|false|string|
+|SLACK_CHANNEL|(input)slack channel|false|string|
+|debug|(input)log flag|false|boolean|
 
 
 ## Develop

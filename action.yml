@@ -1,8 +1,15 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
-outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+name: 'friday'
+description: 'cheatsheet bot'
+inputs:
+  CHEATSHEET_HOST:
+    description: 'cheatsheet host'
+    required: false
+  SLACK_CHANNEL:
+    description: 'slack channel name'
+    required: false
+  debug:
+    description: 'debug flag'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'

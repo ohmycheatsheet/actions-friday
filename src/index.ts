@@ -12,7 +12,7 @@ import { readRepoInfo } from './api'
 async function run() {
   try {
     const info = await readRepoInfo(github.context.repo.owner, github.context.repo.repo)
-    const host = info.data.homepage || core.getInput('host')
+    const host = info.data.homepage?.replace('https://', '') || core.getInput('CHEATSHEET_HOST')
     if (!host) {
       throw new Error('Please define cheatsheet homepage host')
     }
