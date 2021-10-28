@@ -7,7 +7,7 @@ specifiers:
   '@changesets/cli': ^2.17.0
   '@jest/types': ^27.1.1
   '@slack/webhook': ^6.0.0
-  '@types/jest': ^27.0.1
+  '@types/jest': ^27.0.2
   '@vercel/ncc': ^0.31.0
   cz-emoji: ^1.3.1
   dayjs: ^1.10.7
@@ -32,7 +32,7 @@ devDependencies:
   '@aiou/eslint-config': 0.3.0_eslint@7.32.0+typescript@4.4.3
   '@changesets/cli': 2.17.0
   '@jest/types': 27.1.1
-  '@types/jest': 27.0.1
+  '@types/jest': 27.0.2
   '@vercel/ncc': 0.31.1
   cz-emoji: 1.3.1
   dotenv: 10.0.0
@@ -40,7 +40,7 @@ devDependencies:
   husky: 7.0.2
   jest: 27.1.1
   lint-staged: 11.1.2
-  ts-jest: 27.0.5_04e1385bcb7e61957a9335c26551e89f
+  ts-jest: 27.0.5_76d841137589d5683ef6536bca9386d5
   tslib: 2.3.1
   typescript: 4.4.3
 
@@ -1129,8 +1129,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/27.0.1:
-    resolution: {integrity: sha512-HTLpVXHrY69556ozYkcq47TtQJXpcWAWfkoqz+ZGz2JnmZhzlRjprCIyFnetSy8gpDWwTTGBcRVv1J1I1vBrHw==}
+  /@types/jest/27.0.2:
+    resolution: {integrity: sha512-4dRxkS/AFX0c5XW6IPMNOydLn2tEhNhJV7DnYK+0bjoJZ+QTmfucBlihX7aoEsh/ocYtkLC73UbnBXBXIxsULA==}
     dependencies:
       jest-diff: 27.1.1
       pretty-format: 27.1.1
@@ -5373,7 +5373,7 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-jest/27.0.5_04e1385bcb7e61957a9335c26551e89f:
+  /ts-jest/27.0.5_76d841137589d5683ef6536bca9386d5:
     resolution: {integrity: sha512-lIJApzfTaSSbtlksfFNHkWOzLJuuSm4faFAfo5kvzOiRAuoN4/eKxVJ2zEAho8aecE04qX6K1pAzfH5QHL1/8w==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
@@ -5391,7 +5391,7 @@ packages:
       babel-jest:
         optional: true
     dependencies:
-      '@types/jest': 27.0.1
+      '@types/jest': 27.0.2
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 27.1.1

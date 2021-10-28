@@ -1,27 +1,34 @@
 import * as core from '@actions/core'
+import * as github from '@actions/github'
 import fetch from 'node-fetch'
 import dayjs from 'dayjs'
 import { IncomingWebhook } from '@slack/webhook'
+
+import { readRepoInfo } from './api'
 
 /**
  * @todo improve typo define
  */
 async function run() {
   try {
-    const url = process.env.SLACK_WEBHOOK
-    const host = core.getInput('GITHUB_TOKEN')
-    const channel = core.getInput('SLACK_CHANNEL')
-    const debug = core.getInput('debug') || false
-    debug && core.info(`https://${host}/api/someday`)
+    const info = await readRepoInfo(github.context.repo.owner, github.context.repo.repo)
+    const host = info.data.homepage || core.getInput('host')
+    if (!host) {
+      throw new Error('Please define cheatsheet homepage host')
+    }
+    core.info(`Fetch cheatsheet from https://${host}/api/someday`)
     const response: any = await fetch(`https://${host}/api/someday`, { method: 'GET' }).then(res =>
       res.json(),
     )
+    const debug = core.getInput('debug') || false
     debug && core.info(JSON.stringify(response))
-    debug && core.info(JSON.stringify(channel))
+    const channel = core.getInput('SLACK_CHANNEL')
+    const url = process.env.SLACK_WEBHOOK
     if (!channel || !url) {
       core.info('Please defined Slack channel and url')
       return
     }
+    debug && core.info(JSON.stringify(channel))
     const webhook = new IncomingWebhook(url)
     if (response && response[0]) {
       const { body, created_at, labels, title } = response[0]
