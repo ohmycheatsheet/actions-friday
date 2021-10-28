@@ -3,20 +3,26 @@ import fetch from 'node-fetch'
 import dayjs from 'dayjs'
 import { IncomingWebhook } from '@slack/webhook'
 
-// most @actions toolkit packages have async methods
+/**
+ * @todo improve typo define
+ */
 async function run() {
   try {
     const url = process.env.SLACK_WEBHOOK
-    const host = core.getInput('CHEATSHEET_HOST')
+    const host = core.getInput('GITHUB_TOKEN')
     const channel = core.getInput('SLACK_CHANNEL')
     const debug = core.getInput('debug') || false
     debug && core.info(`https://${host}/api/someday`)
-    const webhook = new IncomingWebhook(url)
-    const response = await fetch(`https://${host}/api/someday`, { method: 'GET' }).then(res =>
+    const response: any = await fetch(`https://${host}/api/someday`, { method: 'GET' }).then(res =>
       res.json(),
     )
     debug && core.info(JSON.stringify(response))
     debug && core.info(JSON.stringify(channel))
+    if (!channel || !url) {
+      core.info('Please defined Slack channel and url')
+      return
+    }
+    const webhook = new IncomingWebhook(url)
     if (response && response[0]) {
       const { body, created_at, labels, title } = response[0]
       await webhook.send({
@@ -37,7 +43,7 @@ async function run() {
               },
               {
                 title: 'Labels',
-                value: labels.map(label => label.name).join(','),
+                value: labels.map((label: any) => label.name).join(','),
                 short: false,
               },
             ],
@@ -46,7 +52,7 @@ async function run() {
       })
     }
   } catch (error) {
-    core.setFailed(error.message)
+    core.setFailed((error as any).message)
   }
 }
 

@@ -14,23 +14,30 @@
   "homepage": "https://github.com/ohmycheatsheet/actions-friday#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ohmycheatsheet/actions-friday"
+    "url": "git+https://github.com/ohmycheatsheet/actions-friday.git"
   },
   "bugs": {
     "url": "https://github.com/ohmycheatsheet/actions-friday/issues",
     "email": "jiangweixian1994@gmail.com"
   },
-  "author": "JW <jiangweixian1994@gmail.com> (https://twitter.com/jiangweixian)",
+  "author": {
+    "name": "JW",
+    "email": "jiangweixian1994@gmail.com",
+    "url": "https://twitter.com/jiangweixian"
+  },
   "main": "dist/index.js",
   "scripts": {
     "lint:fix": "eslint . --fix",
     "prepare": "ncc build ./src/index.ts -o dist --source-map --license licenses.txt && husky install",
     "test": "jest --setupFiles dotenv/config",
     "all": "pnpm run lint && pnpm run prepare && pnpm run test",
-    "ci:version": "pnpx changeset version"
+    "ci:version": "pnpx changeset version",
+    "ci:publish": "pnpm run build && pnpx changeset publish",
+    "ci:snapshot": "pnpx changeset version --snapshot beta",
+    "ci:prerelease": "pnpm run build && pnpx changeset publish --tag beta"
   },
   "lint-staged": {
-    "**/**/*.{js,ts,vue,json}": [
+    "**/**/*.{js,ts,tsx,vue,json}": [
       "eslint --fix"
     ]
   },
@@ -42,7 +49,7 @@
     "node-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@aiou/eslint-config": "^0.2.2",
+    "@aiou/eslint-config": "^0.3.0",
     "@changesets/cli": "^2.17.0",
     "@jest/types": "^27.1.1",
     "@types/jest": "^27.0.1",
