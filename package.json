@@ -1,21 +1,23 @@
 {
-  "name": "@aiou/actions-template",
-  "version": "0.1.1",
-  "description": "TypeScript Action Template",
+  "name": "@omcs/actions-friday",
+  "version": "0.0.0",
+  "description": "ohmycheatsheet bot",
   "keywords": [
     "GitHub",
     "Actions",
-    "TypeScript"
+    "TypeScript",
+    "ohmycheatsheet",
+    "friday",
+    "bot"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/JiangWeixian/templates#readme",
+  "homepage": "https://github.com/ohmycheatsheet/actions-friday#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JiangWeixian/templates",
-    "directory": "packages/actions-template"
+    "url": "https://github.com/ohmycheatsheet/actions-friday"
   },
   "bugs": {
-    "url": "https://github.com/JiangWeixian/templates/issues",
+    "url": "https://github.com/ohmycheatsheet/actions-friday/issues",
     "email": "jiangweixian1994@gmail.com"
   },
   "author": "JW <jiangweixian1994@gmail.com> (https://twitter.com/jiangweixian)",
@@ -25,8 +27,7 @@
     "prepare": "ncc build ./src/index.ts -o dist --source-map --license licenses.txt && husky install",
     "test": "jest --setupFiles dotenv/config",
     "all": "pnpm run lint && pnpm run prepare && pnpm run test",
-    "ci:version": "pnpx changeset version",
-    "ci:publish": "pnpx changeset publish"
+    "ci:version": "pnpx changeset version"
   },
   "lint-staged": {
     "**/**/*.{js,ts,vue,json}": [

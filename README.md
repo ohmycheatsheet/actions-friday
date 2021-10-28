@@ -1,2 +1,2 @@
-# @aiou/actions-friday
+# @omcs/actions-friday
 *wip*
