@@ -24,8 +24,8 @@ async function run() {
     debug && core.info(JSON.stringify(response))
     const channel = core.getInput('SLACK_CHANNEL')
     const url = process.env.SLACK_WEBHOOK
-    if (!channel || !url) {
-      core.info('Please defined Slack channel and url')
+    if (!url) {
+      core.info('Please defined Slack webhook')
       return
     }
     debug && core.info(JSON.stringify(channel))
