@@ -1,6 +1,6 @@
 # @omcs/actions-friday
-*work with [cheatsheet app based on github](https://github.com/ohmycheatsheet/cheatsheets)*
 
+[![omcs-bot-banner](https://user-images.githubusercontent.com/6839576/139284715-023030ba-fc1e-4bd7-b526-2537836e2b31.png)](https://github.com/ohmycheatsheet/cheatsheets)
 ## Usage
 
 1. Create a `.github/workflows/friday.yml` file in your GitHub repo.
