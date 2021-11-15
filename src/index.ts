@@ -10,6 +10,9 @@ async function run() {
       case 'schedule':
         await lib.someday()
         break
+      case 'issues':
+        await lib.closeOthers()
+        break
       default:
         break
     }

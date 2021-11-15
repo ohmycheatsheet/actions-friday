@@ -4,6 +4,9 @@ import { readRepoInfo } from '../api'
 import { IncomingWebhook } from '@slack/webhook'
 import dayjs from 'dayjs'
 
+/**
+ * @description call ohmycheatsheets api send random cheatsheet
+ */
 export const someday = async () => {
   const info = await readRepoInfo(github.context.repo.owner, github.context.repo.repo)
 

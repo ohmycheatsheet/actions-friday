@@ -12949,10 +12949,9 @@ var github = __nccwpck_require__(8262);
 ;// CONCATENATED MODULE: ./src/api.ts
 
 
+var octokit = github.getOctokit(process.env.GITHUB_TOKEN);
 var readRepoInfo = function (owner, repo) { return __awaiter(void 0, void 0, void 0, function () {
-    var octokit;
     return __generator(this, function (_a) {
-        octokit = github.getOctokit(process.env.GITHUB_TOKEN);
         return [2 /*return*/, octokit.rest.repos.get({
                 owner: owner,
                 repo: repo,
@@ -12972,6 +12971,9 @@ var dayjs_min_default = /*#__PURE__*/__nccwpck_require__.n(dayjs_min);
 
 
 
+/**
+ * @description call ohmycheatsheets api send random cheatsheet
+ */
 var someday = function () { return __awaiter(void 0, void 0, void 0, function () {
     var info, host, response, debug, channel, url, webhook, _a, body, created_at, labels, title;
     var _b;
@@ -13034,10 +13036,36 @@ var someday = function () { return __awaiter(void 0, void 0, void 0, function ()
     });
 }); };
 
+;// CONCATENATED MODULE: ./src/lib/closeOthers.ts
+
+
+
+var WHITE_LIST = ['ohmycheatsheet'];
+var closeOthers = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, owner, repo, issueCreator;
+    var _b, _c, _d;
+    return __generator(this, function (_e) {
+        switch (_e.label) {
+            case 0:
+                _a = github.context.repo, owner = _a.owner, repo = _a.repo;
+                issueCreator = (_c = (_b = github.context.payload.issue) === null || _b === void 0 ? void 0 : _b.user) === null || _c === void 0 ? void 0 : _c.login;
+                if (!![issueCreator].concat(WHITE_LIST).includes(owner)) return [3 /*break*/, 2];
+                console.log(issueCreator + " is not repo owner, will close this issue");
+                return [4 /*yield*/, octokit.rest.issues.update({ state: "closed", issue_number: (_d = github.context.payload.issue) === null || _d === void 0 ? void 0 : _d.number, owner: owner, repo: repo })];
+            case 1:
+                _e.sent();
+                _e.label = 2;
+            case 2: return [2 /*return*/];
+        }
+    });
+}); };
+
 ;// CONCATENATED MODULE: ./src/lib/index.ts
 
+
 var lib = {
-    someday: someday
+    someday: someday,
+    closeOthers: closeOthers
 };
 /* harmony default export */ const src_lib = (lib);
 
@@ -13052,24 +13080,29 @@ function run() {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 5, , 6]);
+                    _b.trys.push([0, 7, , 8]);
                     eventName = github.context.eventName;
                     _a = eventName;
                     switch (_a) {
                         case 'schedule': return [3 /*break*/, 1];
+                        case 'issues': return [3 /*break*/, 3];
                     }
-                    return [3 /*break*/, 3];
+                    return [3 /*break*/, 5];
                 case 1: return [4 /*yield*/, src_lib.someday()];
                 case 2:
                     _b.sent();
-                    return [3 /*break*/, 4];
-                case 3: return [3 /*break*/, 4];
-                case 4: return [3 /*break*/, 6];
-                case 5:
+                    return [3 /*break*/, 6];
+                case 3: return [4 /*yield*/, src_lib.closeOthers()];
+                case 4:
+                    _b.sent();
+                    return [3 /*break*/, 6];
+                case 5: return [3 /*break*/, 6];
+                case 6: return [3 /*break*/, 8];
+                case 7:
                     error_1 = _b.sent();
                     core.setFailed(error_1.message);
-                    return [3 /*break*/, 6];
-                case 6: return [2 /*return*/];
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
             }
         });
     });

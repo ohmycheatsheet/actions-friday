@@ -1,7 +1,9 @@
 import { someday } from './someday'
+import { closeOthers } from './closeOthers'
 
 const lib = {
-  someday
+  someday,
+  closeOthers
 }
 
 export default lib
