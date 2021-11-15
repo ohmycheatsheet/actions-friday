@@ -17,7 +17,7 @@ jobs:
     name: Someday
     runs-on: ubuntu-latest
     steps:
-    - uses: JiangWeixian/cheatsheets-sdil-actions@v1
+    - uses: ohmycheatsheet/actions-friday@v1
       env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
