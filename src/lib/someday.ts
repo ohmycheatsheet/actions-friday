@@ -1,5 +1,6 @@
 import * as github from '@actions/github'
 import * as core from '@actions/core'
+import fetch from 'node-fetch'
 import { readRepoInfo } from '../api'
 import { IncomingWebhook } from '@slack/webhook'
 import dayjs from 'dayjs'

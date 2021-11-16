@@ -1,5 +1,11 @@
 # @aiou/actions-template
 
+## 0.1.1
+
+### Patch Changes
+
+- fetch undefined
+
 ## 0.1.0
 
 ### Minor Changes
